@@ -19,6 +19,34 @@ model Produkt {
   description String
   isAvaiable Boolean @default(true)
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+  orders Objednavka[]
+  downloadControl DownloadControl[]
+}
+
+model Uzivatel {
+  id String @id @default(uuid())
+  email String @unique
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+  orders Objednavka[]
+}
+
+model Objednavka {
+  id String @id @default(uuid())
+  pricePaidInCents Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+  userId String
+  produktId String
+  user Uzivatel @relation(fields: [userId], references: [id], onDelete: Cascade )
+  produkt Produkt @relation(fields: [produktId], references: [id], onDelete: Restrict )
+}
+
+model DownloadControl {
+  id String @id @default(uuid())
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  produktId String
+  produkt Produkt @relation(fields: [produktId], references: [id], onDelete: Cascade )
 }
