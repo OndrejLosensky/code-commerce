@@ -5,9 +5,9 @@ export default function AdminDashboardLayout ( { children } : Readonly<{children
         <>
             <Navigation>
                 <NavigationLink href="/admin"> Homepage </NavigationLink>
-                <NavigationLink href="/produkty"> Products </NavigationLink>
-                <NavigationLink href="/uzivatele"> Users </NavigationLink>
-                <NavigationLink href="/objednavky"> Orders </NavigationLink>
+                <NavigationLink href="/admin/produkty"> Products </NavigationLink>
+                <NavigationLink href="/admin/uzivatele"> Users </NavigationLink>
+                <NavigationLink href="/admin/objednavky"> Orders </NavigationLink>
             </Navigation>
             <div className="my-8">{children}</div>
         </>
