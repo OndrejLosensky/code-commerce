@@ -71,7 +71,7 @@ const config = {
           to: { height: "0" },
         },
         "meteor": {
-          "0%": { transform: "rotate(90deg) translateX(1200px)" },
+          "0%": { transform: "rotate(90deg) translateX(750px)" },
           "70%": { },
           "100%": {
             transform: "rotate(90deg) translateX(-1000px)",

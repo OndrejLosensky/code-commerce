@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 import { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function Navigation ({ children }: {children: ReactNode}) {
     return (
-        <nav className="bg-green-500 text-white flex justify-start px-4">
+        <nav className="bg-sky-500 text-white flex justify-start px-4">
             {children} 
         </nav>
     )
