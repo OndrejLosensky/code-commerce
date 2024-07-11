@@ -7,7 +7,7 @@ import { FaBoxArchive } from "react-icons/fa6";
 
 export default function AdminDashboardLayout ( { children } : Readonly<{children: React.ReactNode;}>) {
     return (
-        <>
+        <main className="flex flex-row">
             <Navigation>
                 {/*}
                 <div className="flex items-center justify-center">
@@ -19,7 +19,7 @@ export default function AdminDashboardLayout ( { children } : Readonly<{children
                 <NavigationLink href="/admin/uzivatele"> <FaRegUser className="w-4 h-4"/>  Uživatelé </NavigationLink>
                 <NavigationLink href="/admin/objednavky"> <FaShoppingCart className="w-4 h-4"/>  Objednávky </NavigationLink>
             </Navigation>
-            <div className="my-8">{children}</div>
-        </>
+            <div className="m-8">{children}</div>
+        </main>
     )
 }
