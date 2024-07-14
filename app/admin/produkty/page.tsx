@@ -28,8 +28,8 @@ async function ProductsTable () {
         select: {
             id:true,
             name: true,
-            priceInCents: true,
-            isAvaiable: true,
+            price: true,
+            isAvailable: true,
             _count: {select: {orders: true}}
         },
         orderBy: { name: "asc"} 
@@ -51,7 +51,7 @@ async function ProductsTable () {
             {products.map(produkt => (
                 <TableRow key={produkt.id}>
                     <TableCell>
-                        {produkt.isAvaiable ? (
+                        {produkt.isAvailable ? (
                             <>
                                 <span className="sr-only">Dostupný</span>
                                 <CheckCircle2 />
@@ -64,7 +64,7 @@ async function ProductsTable () {
                         )}
                     </TableCell>
                     <TableCell> {produkt.name} </TableCell>
-                    <TableCell> {formatCurrency(produkt.priceInCents / 100)} </TableCell>
+                    <TableCell> {formatCurrency(produkt.price)} </TableCell>
                     <TableCell> {formatNumber(produkt._count.orders)} </TableCell> 
                     <TableCell>
                         <DropdownMenu>

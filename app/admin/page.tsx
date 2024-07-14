@@ -6,12 +6,12 @@ import db from "@/db/db";
 
 async function getOrdersData () {
     const data = await db.objednavka.aggregate({
-        _sum: {pricePaidInCents: true},
+        _sum: {pricePaid: true},
         _count: true
     })
 
     return {
-        amount:( data._sum.pricePaidInCents || 0 ) / 100,
+        amount:( data._sum.pricePaid || 0 ),
         numberOfOrders: data._count
     }
 }
@@ -20,20 +20,20 @@ async function getUsersData () {
     const [userCount, orderData] = await Promise.all([
         db.uzivatel.count(),
         db.objednavka.aggregate({
-            _sum: { pricePaidInCents: true}
+            _sum: { pricePaid: true}
         })
     ])
 
     return {
         userCount,
-        averageValuePerPerson: userCount === 0 ? 0 : (orderData._sum.pricePaidInCents || 0) / userCount / 100 
+        averageValuePerPerson: userCount === 0 ? 0 : (orderData._sum.pricePaid || 0) / userCount 
     }
 }
 
 async function getProductsData () {
     const [active, inactive] = await Promise.all ([
-        db.produkt.count({where: {isAvaiable: true}}),
-        db.produkt.count({where: {isAvaiable: false}})
+        db.produkt.count({where: {isAvailable: true}}),
+        db.produkt.count({where: {isAvailable: false}})
     ])
 
     return {active, inactive}

@@ -34,7 +34,7 @@ export function ProductsForm() {
                 {error.priceInCents && <div className="text-destructive">{error.priceInCents} </div>}
             </div>
             <div className="text-muted-foreground">
-                {formatCurrency((priceInCents || 0) / 100)}
+                {formatCurrency((priceInCents || 0))}
             </div>
             <div className="space-y-2">
                 <Label htmlFor="description">Popisek</Label>
