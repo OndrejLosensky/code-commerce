@@ -1,5 +1,5 @@
 const Currency_formatter = new Intl.NumberFormat("en-US", {
-    currency: "USD",
+    currency: "CZK",
     style: "currency",
     minimumFractionDigits: 0,
 })
