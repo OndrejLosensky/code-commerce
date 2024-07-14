@@ -1,18 +1,56 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+import { formatCurrency, formatNumber } from "@/lib/formatters";
+
 import db from "@/db/db";
 
-function getOrdersData () {
-    db?.objednavka
+async function getOrdersData () {
+    const data = await db.objednavka.aggregate({
+        _sum: {pricePaidInCents: true},
+        _count: true
+    })
+
+    return {
+        amount:( data._sum.pricePaidInCents || 0 ) / 100,
+        numberOfOrders: data._count
+    }
 }
 
+async function getUsersData () {
+    const [userCount, orderData] = await Promise.all([
+        db.uzivatel.count(),
+        db.objednavka.aggregate({
+            _sum: { pricePaidInCents: true}
+        })
+    ])
 
-export default function AdminPage () {
+    return {
+        userCount,
+        averageValuePerPerson: userCount === 0 ? 0 : (orderData._sum.pricePaidInCents || 0) / userCount / 100 
+    }
+}
+
+async function getProductsData () {
+    const [active, inactive] = await Promise.all ([
+        db.produkt.count({where: {isAvaiable: true}}),
+        db.produkt.count({where: {isAvaiable: false}})
+    ])
+
+    return {active, inactive}
+}
+
+export default async function AdminPage () {
+    const [orders, users, products] = await Promise.all ([
+        getOrdersData(),
+        getUsersData(),
+        getProductsData()
+    ]) 
+
     return (
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4">
-            <DashboardCard title="Prodeje" description="random popisek" body="Tělo dané karty" />
-            <DashboardCard title="Uživatelé" description="random popisek" body="Tělo dané karty" />
-            <DashboardCard title="Produkty" description="random popisek" body="Tělo dané karty" />
+            <DashboardCard title="Prodeje" description={`${formatNumber(orders.numberOfOrders)}`} body={`${formatCurrency(orders.amount)}`} />
+            <DashboardCard title="Uživatelé" description={`${formatCurrency(users.averageValuePerPerson)} Průměrná hodnota`} body={`${formatNumber(users.userCount)}`} />
+            <DashboardCard title="Aktivní produkty" description={`${formatNumber(products.inactive)} Neaktivních produktů`} body={`${formatNumber(products.active)}`} />
         </main>
     )
 }
