@@ -12,7 +12,7 @@ import { CiGlobe } from "react-icons/ci";
 
 export function Navigation ({ children }: {children: ReactNode}) {
     return (
-        <nav className="bg-sky-500 text-white flex flex-col h-screen w-[15%] justify-between">
+        <nav className="bg-sky-500 text-white flex flex-col h-screen w-[6%] lg:w-[15%] justify-between">
             <div>
                 {children} 
             </div>

@@ -35,7 +35,7 @@ async function ProductsTable () {
         orderBy: { name: "asc"} 
     })
 
-    if (products.length === 0) return <p> Nenešel jsem žádné produkty, přidej prosím první... </p>
+    if (products.length === 0) return <p className="pt-4"> Nenešel jsem žádné produkty, přidej prosím první... </p>
 
     return <Table>
         <TableHeader>
