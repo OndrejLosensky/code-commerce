@@ -38,6 +38,7 @@ export async function AddProduct (prevState: unknown, formData: FormData) {
     await db.produkt.create({ 
         data: {
             name: data.name,
+            isAvaiable: false,
             description: data.description,
             priceInCents: data.priceInCents,
             filePath,
@@ -45,5 +46,5 @@ export async function AddProduct (prevState: unknown, formData: FormData) {
         },
     })
 
-    redirect("/admin")
+    redirect("/admin/produkty")
 }
