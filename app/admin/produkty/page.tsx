@@ -36,7 +36,7 @@ async function ProductsTable () {
         orderBy: { name: "asc"} 
     })
 
-    if (products.length === 0) return <p className="pt-4"> Nenešel jsem žádné produkty, přidej prosím první... </p>
+    if (products.length === 0) return <p className="pt-2 w-full border-t mt-2"> Nenešel jsem žádné produkty, přidej prosím první... </p>
 
     return <Table>
         <TableHeader>
@@ -55,12 +55,12 @@ async function ProductsTable () {
                         {produkt.isAvailable ? (
                             <>
                                 <span className="sr-only">Dostupný</span>
-                                <CheckCircle2 />
+                                <CheckCircle2 className="stroke-green-500"/>
                             </>
                         ) : (
                             <>
                                 <span className="sr-only">Nedostupný</span>
-                                <XCircle />
+                                <XCircle className="stroke-destructive" />
                             </>
                         )}
                     </TableCell>
