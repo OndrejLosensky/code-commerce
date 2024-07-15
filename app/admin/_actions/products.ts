@@ -3,7 +3,7 @@
 import db from "@/db/db"
 import { z } from "zod"
 import fs from "fs/promises"
-import { redirect } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 const fileSchema = z.instanceof(File, {message: "Povinné"})
 const imageSchema = fileSchema.refine(file => file.size === 0 || file.type.startsWith("image/"))
@@ -47,4 +47,16 @@ export async function AddProduct (prevState: unknown, formData: FormData) {
     })
 
     redirect("/admin/produkty")
+}
+
+export async function toggleProductAvailability(id:string, isAvailable: boolean) {
+    await db.produkt.update({ where: { id }, data: { isAvailable}})
+}
+
+export async function deleteProduct(id: string) {
+    const product = await db.produkt.delete({where: {id}})
+
+    if (product == null) {
+        return notFound()
+    }
 }

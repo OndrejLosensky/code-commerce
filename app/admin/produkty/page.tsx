@@ -6,8 +6,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import db from "@/db/db";
 import { CheckCircle2, MoreVertical, XCircle } from "lucide-react";
 import { formatCurrency, formatNumber } from "@/lib/formatters";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import { ActveToggleDropdownItem, DeleteDropdownITem, DownloadDropdownItem, EditDropdownItem } from "./_actions/product-actions";
 
 export default function ProductsAdminPage () {
     return (
@@ -73,9 +74,11 @@ async function ProductsTable () {
                                 <span className="sr-only">Akce</span>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                <DropdownMenuItem>
-                                    <a download href={`/admin/produkty/${produkt.id}/download`}> Stáhnout </a>
-                                </DropdownMenuItem>
+                                <EditDropdownItem id={produkt.id}/>
+                                <DownloadDropdownItem id={produkt.id}/>
+                                <DropdownMenuSeparator/>
+                                <ActveToggleDropdownItem id={produkt.id} isAvailable={produkt.isAvailable}/>
+                                <DeleteDropdownITem id={produkt.id} disabled={produkt._count.orders > 0}/>
                             </DropdownMenuContent>
                         </DropdownMenu>
                        
