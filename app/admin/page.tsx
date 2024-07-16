@@ -47,10 +47,11 @@ export default async function AdminPage () {
     ]) 
 
     return (
-        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4">
+        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4">
             <DashboardCard title="Prodeje" description={`${formatNumber(orders.numberOfOrders)}`} body={`${formatCurrency(orders.amount)}`} />
             <DashboardCard title="Uživatelé" description={`${formatCurrency(users.averageValuePerPerson)} Průměrná hodnota`} body={`${formatNumber(users.userCount)}`} />
             <DashboardCard title="Aktivní produkty" description={`${formatNumber(products.inactive)} Neaktivních produktů`} body={`${formatNumber(products.active)}`} />
+            <DashboardCard title="Počet navštívení" description="počet navštívení" body="0" />
         </main>
     )
 }

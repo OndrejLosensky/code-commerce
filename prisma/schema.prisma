@@ -50,3 +50,8 @@ model DownloadControl {
   produktId String
   produkt Produkt @relation(fields: [produktId], references: [id], onDelete: Cascade )
 }
+
+model Visit {
+  id     Int      @id @default(autoincrement())
+  count  Int      @default(0)
+}
