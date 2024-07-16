@@ -5,26 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ComponentProps, ReactNode } from "react";
 
+import { Button } from "../ui/button";
+
 import { cn } from "@/lib/utils";
 
-import { IoSettingsOutline } from "react-icons/io5";
-import { CiGlobe } from "react-icons/ci";
 
 export function Navigation({ children }: { children: ReactNode }) {
   return (
     <nav className="bg-sky-500 text-white flex flex-col h-screen w-16 lg:w-[15%] justify-between">
       <div>
         {children}
-      </div>
-      <div>
-        <NavigationLinkBottom href="/"> 
-          <CiGlobe className="mr-2 w-6 h-6"/> 
-          <span className="hidden lg:inline">Zpět na web</span>
-        </NavigationLinkBottom>
-        <NavigationLinkBottom href="/admin/settings"> 
-          <IoSettingsOutline className="mr-2 w-6 h-6"/> 
-          <span className="hidden lg:inline">Nastavení</span>
-        </NavigationLinkBottom>
       </div>
     </nav>
   );
@@ -57,5 +47,15 @@ export function NavigationLinkBottom(props: Omit<ComponentProps<typeof Link>, "c
     >
       {props.children}
     </Link>
+  );
+}
+
+
+export function NavigationCustomerView ({ children }: { children: ReactNode }) {
+  return (
+    <nav className="bg-sky-500 text-white flex flex-row justify-center items-center ">
+        {children}
+        <Link className="absolute right-2 top-2" href="/admin"> <Button>Admin</Button> </Link>
+    </nav>
   );
 }
