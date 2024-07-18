@@ -1,4 +1,4 @@
-import { NavigationCustomerView, NavigationLink } from "../../components/navigation/nav";
+import { NavigationCustomerView, NavigationLink, NavigationLinkCustomer } from "../../components/navigation/nav";
 
 import { FaRegUser, FaShoppingCart, FaHome } from "react-icons/fa";
 import { FaBoxArchive } from "react-icons/fa6";
@@ -9,9 +9,9 @@ export default function Layout ( { children } : Readonly<{children: React.ReactN
     return (
             <main className="flex flex-col w-screen min-h-screen">
                 <NavigationCustomerView>
-                    <NavigationLink href="/"> <FaHome className="w-4 h-4"/>  <span>Domovská stránka </span></NavigationLink>
-                    <NavigationLink href="/produkty"> <FaBoxArchive className="w-4 h-4"/>  <span>Produkty</span> </NavigationLink>
-                    <NavigationLink href="/objednavky"> <FaShoppingCart className="w-4 h-4"/> <span> Objednávky</span> </NavigationLink>
+                    <NavigationLinkCustomer href="/"> <FaHome className="w-4 h-4"/>  <span>Domovská stránka </span></NavigationLinkCustomer>
+                    <NavigationLinkCustomer href="/produkty"> <FaBoxArchive className="w-4 h-4"/>  <span>Produkty</span> </NavigationLinkCustomer>
+                    <NavigationLinkCustomer href="/objednavky"> <FaShoppingCart className="w-4 h-4"/> <span> Objednávky</span> </NavigationLinkCustomer>
                 </NavigationCustomerView>
                 <div className="m-8">
                     {children}

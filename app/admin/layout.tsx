@@ -1,33 +1,27 @@
-import { Navigation, NavigationLink, NavigationLinkBottom } from "@/components/navigation/nav";
+import { Navigation, NavigationLink } from "@/components/navigation/nav";
 
-import { FaRegUser, FaShoppingCart, FaHome } from "react-icons/fa";
+import { FaRegUser, FaShoppingCart } from "react-icons/fa";
 import { FaBoxArchive } from "react-icons/fa6";
+import { RiDashboard3Line } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
+import { CiGlobe } from "react-icons/ci";
 
 export const dynamic = "force-dynamic"
 
-import { IoSettingsOutline } from "react-icons/io5";
-import { CiGlobe } from "react-icons/ci";
+
 
 export default function AdminDashboardLayout ( { children } : Readonly<{children: React.ReactNode;}>) {
     return (
         <main className="flex flex-row w-screen">
             <Navigation>
-                <section className="flex flex-col h-screen justify-between">
+                <section className="flex flex-col justify-between">
                     <div>
-                        <NavigationLink href="/admin"> <FaHome className="w-4 h-4"/>  <span className="hidden lg:flex">Domovská stránka </span></NavigationLink>
+                        <NavigationLink href="/admin"> <RiDashboard3Line className="w-5 h-5"/>  <span className="hidden lg:flex">Dashboard </span></NavigationLink>
                         <NavigationLink href="/admin/produkty"> <FaBoxArchive className="w-4 h-4"/>  <span className="hidden lg:flex">Produkty</span> </NavigationLink>
                         <NavigationLink href="/admin/uzivatele"> <FaRegUser className="w-4 h-4"/>  <span className="hidden lg:flex">Uživatelé </span></NavigationLink>
-                        <NavigationLink href="/admin/objednavky"> <FaShoppingCart className="w-4 h-4"/> <span className="hidden lg:flex"> Objednávky</span> </NavigationLink>                
-                    </div>
-                    <div>
-                        <NavigationLinkBottom href="/"> 
-                            <CiGlobe className="mr-2 w-6 h-6"/> 
-                            <span className="hidden lg:inline">Zpět na web</span>
-                        </NavigationLinkBottom>
-                        <NavigationLinkBottom href="/admin/settings"> 
-                            <IoSettingsOutline className="mr-2 w-6 h-6"/> 
-                            <span className="hidden lg:inline">Nastavení</span>
-                        </NavigationLinkBottom>              
+                        <NavigationLink href="/admin/objednavky"> <FaShoppingCart className="w-4 h-4"/> <span className="hidden lg:flex"> Objednávky</span> </NavigationLink>
+                        <NavigationLink href="/">  <CiGlobe className="w-6 h-5"/> <span className="hidden lg:flex">Zpět na web</span> </NavigationLink>
+                        <NavigationLink href="/admin/nastaveni"><IoSettingsOutline className="w-6 h-5"/> <span className="hidden lg:flex">Nastavení</span></NavigationLink>                                     
                     </div>
                 </section>
             </Navigation>
