@@ -55,7 +55,6 @@ export function NavigationCustomerView ({ children }: { children: ReactNode }) {
   return (
     <nav className="bg-sky-500 text-white flex flex-row justify-center items-center ">
         {children}
-        <Button size="sm" className="absolute top-2 right-2"> <Link href="/admin"> Admin </Link> </Button>                
     </nav>
   );
 }
