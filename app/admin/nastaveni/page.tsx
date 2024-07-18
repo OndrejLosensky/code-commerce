@@ -1,5 +1,5 @@
 export default function SettingsAdminPage () {
     return (
-        <div> Settings page</div>
+        <div> Zde (ne)lze nastavovat fungování aplikace</div>
     )
 }
