@@ -7,6 +7,8 @@ export async function GET(req: NextRequest, {params: { downloadVerificationId }}
         where: { id: downloadVerificationId, expiresAt: { gt: new Date()}},
         select: { produkt: { select: { filePath: true, name: true}}}
     })
+
+    console.log("Data:" , data)
     
     if (data == null) {
         return NextResponse.redirect(new URL("/produkty/download/expired", req.url))

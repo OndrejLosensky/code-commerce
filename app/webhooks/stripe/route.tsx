@@ -1,11 +1,12 @@
 import db from "@/db/db";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Resend } from "resend"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+const resend = new Resend(process.env.RESEND_API_KEY as string)
 
 export async function POST(req: NextRequest) {
-    try {
         const body = await req.text();
         const signature = req.headers.get("stripe-signature");
 
@@ -61,6 +62,23 @@ export async function POST(req: NextRequest) {
                     },
                 },
             });
+            
+            /*
+            const downloadVerification = await db.downloadControl.create({
+                data: {
+                    produktId,
+                    expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                },
+            })
+            */
+            
+
+            await resend.emails.send({
+                from: `Support ${process.env.SENDER_EMAIL}`,
+                to: email,
+                subject: "Potrzení o objednávce",
+                react: <h1> Does this work? </h1>
+            })
 
             return new NextResponse(JSON.stringify(user.orders[0]), {
                 status: 200,
@@ -68,10 +86,5 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        return new NextResponse("Unhandled event type", { status: 400 });
-
-    } catch (err) {
-        console.error("Error processing webhook:", err);
-        return new NextResponse("Internal Server Error", { status: 500 });
-    }
+        return new NextResponse();
 }

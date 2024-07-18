@@ -5,6 +5,7 @@ import { FaBoxArchive } from "react-icons/fa6";
 import { RiDashboard3Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic"
 

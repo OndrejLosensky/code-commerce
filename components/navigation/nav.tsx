@@ -10,10 +10,10 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 
 
-export function Navigation({ children }: { children: ReactNode }) {
+export function Navigation({ children }: { children: ReactNode}) {
   return (
     <nav className="m-4 bg-gray-300 text-black rounded-xl shadow-md border border-black/20 flex flex-col w-16 lg:w-[15%] justify-between">
-      <div>
+      <div>       
         {children}
       </div>
     </nav>

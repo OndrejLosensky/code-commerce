@@ -43,7 +43,7 @@ export default async function SuccessfullPurchasePage({ searchParams } : {search
                 </div>
                 <Button asChild className="mt-4" size="lg"> 
                         {isSuccessfull ? (
-                            <a href={`/produkty/download/${await createDownloadVer(product.id)}`}>Stáhnout</a>
+                            <Link href="/objednavky">Otevřít</Link>
                         ) : (
                             <Link href={`/produkty/${product.id}/koupit`}> Zkusit znovu </Link>
                         )}
@@ -52,6 +52,7 @@ export default async function SuccessfullPurchasePage({ searchParams } : {search
     )
 }
 
+/*
 async function createDownloadVer ( produktId: string){
     return ( 
         await db.downloadControl.create({
@@ -62,3 +63,4 @@ async function createDownloadVer ( produktId: string){
          })
     ).id
 }
+*/
