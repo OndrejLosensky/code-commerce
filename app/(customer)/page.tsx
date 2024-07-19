@@ -7,6 +7,8 @@ import { CardSkeleton, ProductCard } from "./_components/product-card"
 import { Suspense } from "react"
 import { cache } from "@/lib/cache"
 
+
+
 const getProducts = cache(() => {
     return db.produkt.findMany({
         where: { isAvailable: true}, 
@@ -19,7 +21,7 @@ const getPopularProducts = cache(() => {
     return db.produkt.findMany({
         where: { isAvailable: true}, 
         orderBy: { createdAt: "desc"},
-        take: 6
+        take: 3
     })
 }, ["/", "getPopularProducts"], {revalidate: 60 * 60 * 24}) /* Revalidates once in a 24 hours */
 
@@ -42,6 +44,7 @@ function GridSection ({title, productsFetch}: GridSectionProps) {
     return (
         <div className="space-y-4">
             {/* Header for product section */}
+
             <div className="flex gap-4">
                 <h2 className="text-3xl font-bold"> {title} </h2>
                 <Button variant="ghost" size="sm" asChild>
