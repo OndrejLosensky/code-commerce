@@ -51,7 +51,7 @@ export function NavigationLinkCustomer(props: Omit<ComponentProps<typeof Link>, 
 
 export function NavigationCustomerView ({ children }: { children: ReactNode }) {
   return (
-    <nav className="bg-sky-500 fixed w-full z-10 border-b border-black/20 shadow-sm text-white flex flex-row justify-center items-center ">
+    <nav className="bg-sky-500 sticky top-0 w-full z-10 border-b border-black/20 shadow-sm text-white flex flex-row justify-center items-center ">
         {children}
     </nav>
   )
