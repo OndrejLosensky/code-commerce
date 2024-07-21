@@ -1,5 +1,9 @@
+import { PageHeader } from "../_components/admin-page-nav";
+
 export default function SettingsAdminPage () {
     return (
-        <div> Zde (ne)lze nastavovat fungování aplikace</div>
+        <div> 
+            <PageHeader> Nastavení aplikace </PageHeader>
+        </div>
     )
 }
