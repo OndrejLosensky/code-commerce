@@ -7,7 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
 import { RiAiGenerate } from "react-icons/ri";
 import { MdOutlinePermMedia } from "react-icons/md";
-import { RiAccountCircleLine } from "react-icons/ri";
+import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { ExitDialog } from "./_components/exit-dialog";
 
 
@@ -55,9 +55,9 @@ export default function AdminDashboardLayout({ children }: Readonly<{ children: 
                             <IoSettingsOutline className="w-6 h-5" />
                             <span className="hidden lg:flex">Nastavení</span>
                         </NavigationLink>
-                        <NavigationLink href="/admin/ucet">
-                            <RiAccountCircleLine className="w-6 h-5" />
-                            <span className="hidden lg:flex">Účet</span>
+                        <NavigationLink href="/admin/pluginy">
+                            <IoExtensionPuzzleOutline className="w-6 h-5" />
+                            <span className="hidden lg:flex">Pluginy</span>
                         </NavigationLink>
                         <br />
 
