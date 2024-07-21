@@ -29,9 +29,11 @@ const getPopularProducts = cache(() => {
 export default function HomePage() {
     return (
         <main className="space-y-8">
+            {/* 
             <div className="py-16 px-2 flex items-center justify-center bg-gradient-to-br from-violet-400 to-teal-400 ">
                 <h1 className="font-bold text-white text-4xl"> Vítejte v aplikaci <strong>CodeCommerce</strong> </h1>
             </div>
+            */}
             <GridSection title="Nejvíce populární" productsFetch={getPopularProducts}/>
             <GridSection title="Nejnovější produkty" productsFetch={getProducts}/>
         </main>

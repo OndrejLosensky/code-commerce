@@ -12,7 +12,6 @@ import {
 import { ReactNode } from "react"
 
 import { NavigationExitLink } from "@/components/navigation/nav"
-import { CiGlobe } from "react-icons/ci"
 import Link from "next/link"
 export function ExitDialog({ children } : {children:ReactNode}) {
     return (
