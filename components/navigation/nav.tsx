@@ -69,3 +69,14 @@ export function NavigationCustomerView ({ children }: { children: ReactNode }) {
     </nav>
   )
 }
+
+
+export function ActionNavigation({ children }: { children: ReactNode}) {
+  return (
+    <nav className="m-4 bg-gray-100 max-h-screen text-black rounded-xl shadow-md border border-black/20 flex flex-col w-96 h-12 justify-between">
+      <div>       
+        {children}
+      </div>
+    </nav>
+  );
+}
