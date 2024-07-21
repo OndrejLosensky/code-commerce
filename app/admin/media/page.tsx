@@ -31,13 +31,13 @@ async function MediaGallery() {
             {files.map((file) => (
                 <div className="space-y-2" key={file.id}>
                     {file.imagePath ? (
-                        <Image src={file.imagePath} width={300} height={200} className="object-cover w-full h-48 rounded-lg" alt={file.name} />
+                        <Image src={file.imagePath} width={300} height={200} className="hover:scale-105 duration-200 object-cover w-full h-48 rounded-lg" alt={file.name} />
                     ) : (
                         <div className="flex items-center justify-center w-full h-48 bg-gray-200 rounded-lg">
                             <Dice1 className="w-16 h-16 text-gray-400" />
                         </div>
                     )}
-                    <p className="text-center text-sm font-medium">{file.name}</p>
+                    <p className="text-center text-md font-bold">{file.name}</p>
                 </div>
             ))}
         </div>

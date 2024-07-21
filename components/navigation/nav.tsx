@@ -24,8 +24,8 @@ export function NavigationLink(props: Omit<ComponentProps<typeof Link>, "classNa
     <Link 
       {...props} 
       className={cn(
-        "relative p-4 flex font-medium flex-col lg:flex-row gap-y-2 m-2 rounded-md lg:gap-x-2 items-center hover:bg-sky-200 duration-300 hover:text-sky-900 focus-visible:bg-secondary focus-visible:text-secondary-foreground", 
-        pathname === props.href && "bg-sky-200/50 text-sky-800"
+        "relative p-4 flex font-medium flex-col lg:flex-row gap-y-2 m-2 rounded-md lg:gap-x-2 items-center hover:bg-blue-500/20 duration-300 hover:text-blue-700/90 focus-visible:bg-secondary focus-visible:text-secondary-foreground", 
+        pathname === props.href && "bg-blue-500/10 text-blue-600"
       )}
     >
       {props.children}

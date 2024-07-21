@@ -2,7 +2,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 import { formatCurrency, formatNumber } from "@/lib/formatters";
 
+import { TbDeviceAnalytics } from "react-icons/tb";
+import { FaRegUser, FaRegFile } from "react-icons/fa";
+import { AiFillProduct } from "react-icons/ai";
+import { FaLink } from "react-icons/fa6";
+import { IoIosPin } from "react-icons/io";
+
 import db from "@/db/db";
+import { ReactNode } from "react";
 
 async function getOrdersData () {
     const data = await db.objednavka.aggregate({
@@ -55,11 +62,12 @@ export default async function AdminPage () {
 
     return (
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4">
-            <DashboardCard title="Prodeje" description={`${formatNumber(orders.numberOfOrders)} objednávek`} body={`${formatCurrency(orders.amount)}`} />
-            <DashboardCard title="Uživatelé" description={`${formatCurrency(users.averageValuePerPerson)} Průměrná hodnota`} body={`${formatNumber(users.userCount)}`} />
-            <DashboardCard title="Aktivní produkty" description={`${formatNumber(products.inactive)} Neaktivních produktů`} body={`${formatNumber(products.active)}`} />
-            <DashboardCard title="Počet navštívení" description="počet navštívení" body="0" />
-            <DashboardCard title="Aktivní odkazy" description="Aktuální počet právě aktivních odkazů" body={`${formatNumber(links)}`} />
+            <DashboardCard icon={<TbDeviceAnalytics/>} title="Prodeje" description={`${formatNumber(orders.numberOfOrders)} objednávek`} body={`${formatCurrency(orders.amount)}`} />
+            <DashboardCard icon={<FaRegUser/>} title="Uživatelé" description={`${formatCurrency(users.averageValuePerPerson)} Průměrná hodnota`} body={`${formatNumber(users.userCount)}`} />
+            <DashboardCard icon={<AiFillProduct/>} title="Aktivní produkty" description={`${formatNumber(products.inactive)} Neaktivních produktů`} body={`${formatNumber(products.active)}`} />
+            <DashboardCard icon={<IoIosPin/>} title="Počet navštívení" description="počet navštívení" body="0" />
+            <DashboardCard icon={<FaLink/>} title="Aktivní odkazy" description="Aktuální počet právě aktivních odkazů" body={`${formatNumber(links)}`} />
+            <DashboardCard icon={<FaRegFile/>} title="Soubory" description="Nahraných souborů na e-shopu" body={`${formatNumber(links)}`} />
         </main>
     )
 }
@@ -68,13 +76,14 @@ type DAshboardCardProps = {
     title: string;
     description: string;
     body: string;
+    icon: ReactNode
 }
 
-function DashboardCard ( { title, description, body} : DAshboardCardProps) {
+function DashboardCard ( { title, description, body, icon} : DAshboardCardProps) {
     return (  
     <Card>
         <CardHeader> 
-            <CardTitle> {title}</CardTitle> 
+            <CardTitle className="flex flex-row gap-x-2"> {icon} {title}</CardTitle> 
             <CardDescription> {description} </CardDescription>
         </CardHeader>
         

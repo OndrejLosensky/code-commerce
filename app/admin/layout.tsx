@@ -22,16 +22,16 @@ export default function AdminDashboardLayout ( { children } : Readonly<{children
                     <div>
                         <NavigationLink href="/admin"> <RiDashboard3Line className="w-5 h-5"/>  <span className="hidden lg:flex">Přehled </span></NavigationLink>
                         
-                        <h2 className="pl-4 pt-4 font-medium text-lg text-muted-foreground"> Obchod </h2>
+                        <h2 className="pl-4 pt-4 font-medium hidden lg:flex text-lg text-muted-foreground"> Obchod </h2>
                         <NavigationLink href="/admin/produkty"> <FaBoxArchive className="w-4 h-4"/>  <span className="hidden lg:flex">Produkty</span> </NavigationLink>
                         <NavigationLink href="/admin/uzivatele"> <FaRegUser className="w-4 h-4"/>  <span className="hidden lg:flex">Uživatelé </span></NavigationLink>
                         <NavigationLink href="/admin/objednavky"> <FaShoppingCart className="w-4 h-4"/> <span className="hidden lg:flex"> Objednávky</span> </NavigationLink>
                         
-                        <h2 className="pl-4 pt-4 font-medium text-lg text-muted-foreground"> Vzhled </h2>
-                        <NavigationLink href="/admin/uvodni-stranka"><RiAiGenerate className="w-4 h-4" /> <span className="hidden lg:flex"></span> Stránky  <span className="absolute right-2 bg-blue-200 border border-blue-500/60 text-blue-600 px-2 py-1 text-sm rounded-md"> Soon </span> </NavigationLink>
-                        <NavigationLink href="/admin/media"><MdOutlinePermMedia className="w-4 h-4" /> <span className="hidden lg:flex"></span> Média  <span className="absolute right-2 bg-green-200 border border-green-500/60 text-green-600 px-2 py-1 text-sm rounded-md"> Beta </span> </NavigationLink>
+                        <h2 className="pl-4 pt-4 font-medium hidden lg:flex text-lg text-muted-foreground"> Vzhled </h2>
+                        <NavigationLink href="/admin/uvodni-stranka"><RiAiGenerate className="w-4 h-4" /> <span className="hidden lg:flex">Stránky</span>   <span className="hidden lg:flex absolute right-2 bg-blue-200 border border-blue-500/60 text-blue-600 px-2 py-1 text-sm rounded-md"> Soon </span> </NavigationLink>
+                        <NavigationLink href="/admin/media"><MdOutlinePermMedia className="w-4 h-4" /> <span className="hidden lg:flex">Média</span>   <span className="hidden lg:flex absolute right-2 bg-green-200 border border-green-500/60 text-green-600 px-2 py-1 text-sm rounded-md"> Beta </span> </NavigationLink>
 
-                        <h2 className="pl-4 pt-4 font-medium text-lg text-muted-foreground"> Nastavení </h2>
+                        <h2 className="pl-4 pt-4 font-medium hidden lg:flex text-lg text-muted-foreground"> Nastavení </h2>
                         <NavigationLink href="/admin/nastaveni"><IoSettingsOutline className="w-6 h-5"/> <span className="hidden lg:flex">Nastavení</span></NavigationLink>                                                              
                         <NavigationLink href="/admin/ucet"><RiAccountCircleLine className="w-6 h-5"/> <span className="hidden lg:flex">Účet</span></NavigationLink>                                                              
                         <br />
