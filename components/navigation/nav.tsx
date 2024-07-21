@@ -7,6 +7,7 @@ import { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { Button } from "../ui/button";
 
 export function Navigation({ children }: { children: ReactNode}) {
   return (
@@ -32,6 +33,18 @@ export function NavigationLink(props: Omit<ComponentProps<typeof Link>, "classNa
     </Link>
   );
 }
+
+export function NavigationExitLink(props: Omit<ComponentProps<typeof Button>, "className">) {
+  return (
+    <Button 
+      {...props} 
+    >
+      {props.children}
+    </Button>
+  );
+}
+
+
 
 export function NavigationLinkCustomer(props: Omit<ComponentProps<typeof Link>, "className">) {
   const pathname = usePathname();
