@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 
 export function Navigation({ children }: { children: ReactNode}) {
   return (
-    <nav className="m-4 bg-gray-100 max-h-screen text-black rounded-xl shadow-md border border-black/20 flex flex-col w-16 lg:w-[15%] justify-between">
+    <nav className="fixed m-4 bg-gray-100 max-h-screen text-black rounded-xl shadow-md border border-black/20 flex flex-col w-16 lg:w-[15%] justify-between">
       <div>       
         {children}
       </div>
