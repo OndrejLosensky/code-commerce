@@ -2,11 +2,11 @@
 CREATE TABLE "Produkt" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
-    "priceInCents" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL,
     "filePath" TEXT NOT NULL,
     "imagePath" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "isAvaiable" BOOLEAN NOT NULL DEFAULT true,
+    "isAvailable" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
@@ -22,7 +22,7 @@ CREATE TABLE "Uzivatel" (
 -- CreateTable
 CREATE TABLE "Objednavka" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "pricePaidInCents" INTEGER NOT NULL,
+    "pricePaid" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "userId" TEXT NOT NULL,
@@ -38,6 +38,19 @@ CREATE TABLE "DownloadControl" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "produktId" TEXT NOT NULL,
     CONSTRAINT "DownloadControl_produktId_fkey" FOREIGN KEY ("produktId") REFERENCES "Produkt" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Visit" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "count" INTEGER NOT NULL DEFAULT 0
+);
+
+-- CreateTable
+CREATE TABLE "Homepage" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "styles" TEXT NOT NULL,
+    "layoutOption" INTEGER NOT NULL DEFAULT 1
 );
 
 -- CreateIndex
