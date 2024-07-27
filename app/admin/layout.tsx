@@ -42,7 +42,7 @@ export default function AdminDashboardLayout({ children }: Readonly<{ children: 
                         <NavigationLink href="/admin/uvodni-stranka">
                             <RiAiGenerate className="w-4 h-4" />
                             <span className="hidden lg:flex">Stránky</span>
-                            <span className="hidden lg:flex absolute right-2 bg-blue-200 border border-blue-500/60 text-blue-600 px-2 py-1 text-sm rounded-md">Soon</span>
+                            <span className="hidden lg:flex absolute right-2 bg-green-200 border border-green-500/60 text-green-600 px-2 py-1 text-sm rounded-md">Beta</span>
                         </NavigationLink>
                         <NavigationLink href="/admin/media">
                             <MdOutlinePermMedia className="w-4 h-4" />
@@ -54,10 +54,12 @@ export default function AdminDashboardLayout({ children }: Readonly<{ children: 
                         <NavigationLink href="/admin/nastaveni">
                             <IoSettingsOutline className="w-6 h-5" />
                             <span className="hidden lg:flex">Nastavení</span>
+                            <span className="hidden lg:flex absolute right-2 bg-blue-200 border border-blue-500/60 text-blue-600 px-2 py-1 text-sm rounded-md">Soon</span>
                         </NavigationLink>
                         <NavigationLink href="/admin/pluginy">
                             <IoExtensionPuzzleOutline className="w-6 h-5" />
                             <span className="hidden lg:flex">Pluginy</span>
+                            <span className="hidden lg:flex absolute right-2 bg-blue-200 border border-blue-500/60 text-blue-600 px-2 py-1 text-sm rounded-md">Soon</span>
                         </NavigationLink>
                         <br />
 

@@ -36,7 +36,7 @@ const layoutOptions = {
 
 export default async function HomePage() {
     const homepageStyles = await getHomepageStyles();
-    const selectedLayout = 3;
+    const selectedLayout = 1;
 
     return (
         <main className={`space-y-12 ${homepageStyles}`}>

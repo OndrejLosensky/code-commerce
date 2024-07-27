@@ -1,6 +1,6 @@
 "use server"
 
-import db from "@/db/db" // Ensure this path is correct
+import db from "@/db/db"
 import { z } from "zod"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
@@ -12,33 +12,29 @@ const pageSchema = z.object({
 export async function AddPage(formData: FormData) {
     const result = pageSchema.safeParse(Object.fromEntries(formData.entries()))
 
-    if (result.success === false) {
+    if (!result.success) {
         return result.error.formErrors.fieldErrors
     }
 
     const data = result.data
 
-    // Check if a record already exists
-    const existingRecord = await db.homepage.findFirst()
+    try {
+        const existingRecord = await db.homepage.findFirst()
 
-    if (existingRecord) {
-        // If a record exists, update it
-        await db.homepage.update({
-            where: { id: existingRecord.id },
-            data: {
-                styles: data.styles
-            }
-        })
-    } else {
-        // If no record exists, create a new one
-        await db.homepage.create({
-            data: {
-                styles: data.styles
-            }
-        })
+        if (existingRecord) {
+            await db.homepage.update({
+                where: { id: existingRecord.id },
+                data: {
+                    styles: data.styles 
+                }
+            })
+        } else {
+           console.log("You need to create an record for styles first")
+        }
+
+        revalidatePath("/")
+        redirect("/admin/")
+    } catch (error) {
+        console.error("Error updating or creating record:", error)
     }
-
-    revalidatePath("/")
-    redirect("/admin/")
 }
-    
