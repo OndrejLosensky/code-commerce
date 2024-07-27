@@ -7,6 +7,7 @@ import { FaRegUser, FaRegFile } from "react-icons/fa";
 import { AiFillProduct } from "react-icons/ai";
 import { FaLink } from "react-icons/fa6";
 import { IoIosPin } from "react-icons/io";
+import { IoLogoCss3 } from "react-icons/io";
 
 import db from "@/db/db";
 import { ReactNode } from "react";
@@ -68,6 +69,7 @@ export default async function AdminPage () {
             <DashboardCard icon={<IoIosPin/>} title="Počet navštívení" description="počet navštívení" body="0" />
             <DashboardCard icon={<FaLink/>} title="Aktivní odkazy" description="Aktuální počet právě aktivních odkazů" body={`${formatNumber(links)}`} />
             <DashboardCard icon={<FaRegFile/>} title="Soubory" description="Nahraných souborů na e-shopu" body={`${formatNumber(links)}`} />
+            <DashboardCard icon={<IoLogoCss3/>} title="Aktivní styly" description="Jednotlivé CSS třídy" body={`${formatNumber(links)}`} />
         </main>
     )
 }

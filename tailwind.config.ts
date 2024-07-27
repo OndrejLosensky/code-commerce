@@ -7,6 +7,8 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './prisma/dev.db',
+    './prisma/*.db'
 	],
   prefix: "",
   theme: {

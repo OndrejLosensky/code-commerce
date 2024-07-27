@@ -39,7 +39,7 @@ export async function AddProduct (prevState: unknown, formData: FormData) {
     await db.produkt.create({ 
         data: {
             name: data.name,
-            isAvailable: false,
+            isAvailable: true,
             description: data.description,
             price: data.priceInCents,
             filePath,

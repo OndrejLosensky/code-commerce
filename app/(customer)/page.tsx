@@ -7,35 +7,32 @@ import { CardSkeleton, ProductCard } from "./_components/product-card"
 import { Suspense } from "react"
 import { cache } from "@/lib/cache"
 
-
-
 const getProducts = cache(() => {
     return db.produkt.findMany({
-        where: { isAvailable: true}, 
-        orderBy: { orders: {_count: "desc"}},
+        where: { isAvailable: true }, 
+        orderBy: { orders: { _count: "desc" } },
         take: 6
     })
 }, ["/", "getProducts"])
 
 const getPopularProducts = cache(() => {
     return db.produkt.findMany({
-        where: { isAvailable: true}, 
-        orderBy: { createdAt: "desc"},
+        where: { isAvailable: true }, 
+        orderBy: { createdAt: "desc" },
         take: 3
     })
-}, ["/", "getPopularProducts"], {revalidate: 60 * 60 * 24}) /* Revalidates once in a 24 hours */
+}, ["/", "getPopularProducts"], { revalidate: 60 * 60 * 24 })
 
+const getHomepageStyles = async () => {
+    const homepageRecord = await db.homepage.findFirst()
+    return homepageRecord ? homepageRecord.styles.trim() : '' 
+}
 
-export default function HomePage() {
+export default async function HomePage() {
     return (
-        <main className="space-y-8">
-            {/* 
-            <div className="py-16 px-2 flex items-center justify-center bg-gradient-to-br from-violet-400 to-teal-400 ">
-                <h1 className="font-bold text-white text-4xl"> Vítejte v aplikaci <strong>CodeCommerce</strong> </h1>
-            </div>
-            */}
-            <GridSection title="Nejvíce populární" productsFetch={getPopularProducts}/>
-            <GridSection title="Nejnovější produkty" productsFetch={getProducts}/>
+        <main className="space-y-12">
+            <GridSection title="Nejvíce populární" productsFetch={getPopularProducts} />
+            <GridSection title="Nejnovější produkty" productsFetch={getProducts} />
         </main>
     )
 }
@@ -45,27 +42,32 @@ type GridSectionProps = {
     productsFetch: () => Promise<Produkt[]>
 }
 
-function GridSection ({title, productsFetch}: GridSectionProps) {
+async function GridSection({ title, productsFetch }: GridSectionProps) {
+    const homepageStyles = await getHomepageStyles()
+    const sanitizedStyles = homepageStyles
+        .split(/\s+/)         // Split by whitespace
+        .map(cls => cls.trim()) // Trim each class
+        .filter(cls => cls)    // Remove empty classes
+        .join(' ')             // Join back with single space
+    console.log('Fetched Styles:', sanitizedStyles);
+
     return (
         <div className="space-y-4">
-            {/* Header for product section */}
-
             <div className="flex gap-4">
                 <h2 className="text-3xl font-bold"> {title} </h2>
                 <Button variant="ghost" size="sm" asChild>
                     <Link href="/produkty" className="space-x-2">
                         <span>Všechny produkty</span>
-                        <ArrowRight className="size-4"/>
+                        <ArrowRight className="size-4" />
                     </Link>
                 </Button>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${sanitizedStyles} `}>
                 <Suspense fallback={
                     <>
-                        <CardSkeleton/>
-                        <CardSkeleton/>
-                        <CardSkeleton/>
+                        <CardSkeleton />
+                        <CardSkeleton />
+                        <CardSkeleton />
                     </>
                 }>
                     <ProductSuspense productsFetch={productsFetch} />
@@ -77,10 +79,13 @@ function GridSection ({title, productsFetch}: GridSectionProps) {
 
 async function ProductSuspense({
     productsFetch, 
-}: {  productsFetch: () => Promise<Produkt[]>
-
- }) {
-    return (await productsFetch()).map(product => (
-        <ProductCard key={product.id} {...product}/>
-    ))
+}: { productsFetch: () => Promise<Produkt[]> }) {
+    const products = await productsFetch()
+    return (
+        <>
+            {products.map(product => (
+                <ProductCard key={product.id} {...product} />
+            ))}
+        </>
+    )
 }

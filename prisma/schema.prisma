@@ -55,3 +55,8 @@ model Visit {
   id     Int      @id @default(autoincrement())
   count  Int      @default(0)
 }
+
+model Homepage {
+  id     String @id
+  styles String
+}
