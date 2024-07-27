@@ -59,4 +59,5 @@ model Visit {
 model Homepage {
   id     String @id
   styles String
+  layoutOption  Int    @default(1)
 }
