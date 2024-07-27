@@ -23,11 +23,13 @@ const getPopularProducts = cache(() => {
     });
 }, ["/", "getPopularProducts"], { revalidate: 60 * 60 * 24 });
 
+/*
 const getHomepageStyles = async () => {
     const homepageRecord = await db.homepage.findFirst();
     return homepageRecord ? homepageRecord.styles.trim() : '';
 }
 
+*/
 const layoutOptions = {
     1: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
     2: 'grid-cols-1 md:grid-cols-4 lg:grid-cols-5',
@@ -35,11 +37,11 @@ const layoutOptions = {
 };
 
 export default async function HomePage() {
-    const homepageStyles = await getHomepageStyles();
+    //const homepageStyles = await getHomepageStyles();
     const selectedLayout = 1;
 
     return (
-        <main className={`space-y-12 ${homepageStyles}`}>
+        <main className={`space-y-12`}>
             <GridSection title="Nejvíce populární" productsFetch={getPopularProducts} layout={layoutOptions[selectedLayout]} />
             <GridSection title="Nejnovější produkty" productsFetch={getProducts} layout={layoutOptions[selectedLayout]} />
         </main>
